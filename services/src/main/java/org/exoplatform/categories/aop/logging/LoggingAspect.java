@@ -6,15 +6,15 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 
 import java.util.Arrays;
 
 @Aspect
 public class LoggingAspect {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private static final Log log = ExoLogger.getExoLogger(LoggingAspect.class);
 
     public LoggingAspect() {
     }

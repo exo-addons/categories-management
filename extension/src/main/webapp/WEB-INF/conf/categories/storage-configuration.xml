@@ -20,9 +20,10 @@
 
 -->
 
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://www.exoplatform.org/xml/ns/kernel_1_3.xsd http://www.exoplatform.org/xml/ns/kernel_1_3.xsd"
-               xmlns="http://www.exoplatform.org/xml/ns/kernel_1_3.xsd">
+<configuration
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.exoplatform.org/xml/ns/kernel_1_2.xsd http://www.exoplatform.org/xml/ns/kernel_1_2.xsd"
+        xmlns="http://www.exoplatform.org/xml/ns/kernel_1_2.xsd">
     <!-- Enable JPA -->
     <component>
         <type>org.exoplatform.commons.persistence.impl.EntityManagerService</type>
@@ -32,17 +33,17 @@
         <type>org.exoplatform.categories.storage.dao.CategoryDAO</type>
     </component>
 
-    <!-- Gamification storage layour (Liquebase initializer) -->
+    <!-- Categories Management storage layour (Liquebase initializer) -->
     <external-component-plugins>
         <target-component>org.exoplatform.commons.api.persistence.DataInitializer</target-component>
         <component-plugin>
-            <name>WebConferencingChangeLogsPlugin</name>
+            <name>CategoriesManagementChangeLogsPlugin</name>
             <set-method>addChangeLogsPlugin</set-method>
             <type>org.exoplatform.commons.persistence.impl.ChangeLogsPlugin</type>
             <init-params>
                 <values-param>
                     <name>changelogs</name>
-                    <description>Change logs of Web Conferencing</description>
+                    <description>Change logs of Categories Management</description>
                     <value>db/changelog/categories.db.changelog-1.0.0.xml</value>
                 </values-param>
             </init-params>

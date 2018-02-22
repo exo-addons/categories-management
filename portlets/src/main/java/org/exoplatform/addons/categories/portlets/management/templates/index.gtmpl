@@ -1,0 +1,15 @@
+<div class="container">
+  <div id="categories-management">
+    <div class="">
+      <h2>
+        <span>Categories Managements</span>
+      </h2>
+    </div>
+    <div class="col-md-12">
+      <ol>
+        <category v-for="category in categories" v-bind:item="category" v-bind:key="category.id">
+        </category>
+      </ol>
+    </div>
+  </div>
+</div>

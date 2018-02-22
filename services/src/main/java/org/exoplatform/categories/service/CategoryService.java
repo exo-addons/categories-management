@@ -48,7 +48,6 @@ public class CategoryService {
 
     }
 
-
     public void getAllBadges () {
         categoryStorage.findAll();
 
