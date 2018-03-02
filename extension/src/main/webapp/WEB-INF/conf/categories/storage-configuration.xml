@@ -28,9 +28,13 @@
     <component>
         <type>org.exoplatform.commons.persistence.impl.EntityManagerService</type>
     </component>
-    <!-- Badges storage (JPA) -->
+    <!-- Categories storage (JPA) -->
     <component>
         <type>org.exoplatform.categories.storage.dao.CategoryDAO</type>
+    </component>
+    <!-- Categories Service Layer-->
+    <component>
+        <type>org.exoplatform.categories.service.CategoryService</type>
     </component>
 
     <!-- Categories Management storage layour (Liquebase initializer) -->

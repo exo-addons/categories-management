@@ -33,6 +33,7 @@
             <init-params>
                 <value-param>
                     <name>override</name>
+                    <description></description>
                     <value>true</value>
                 </value-param>
                 <object-param>
@@ -42,17 +43,19 @@
                         <field name="predefinedOwner">
                             <collection type="java.util.HashSet">
                                 <value>
-                                    <string>intranet</string>
+                                    <string>/platform/administrators</string>
                                 </value>
                             </collection>
                         </field>
                         <field name="ownerType">
-                            <string>portal</string>
+                            <string>group</string>
                         </field>
                         <field name="templateLocation">
-                            <string>war:/conf/categories/</string>
+                            <string>war:/conf/categories/portal</string>
                         </field>
-                        <field name="importMode"><string>merge</string></field>
+                        <!-- field name="importMode">
+                          <string>merge</string>
+                        </field -->
                     </object>
                 </object-param>
             </init-params>

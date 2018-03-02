@@ -40,13 +40,15 @@
         <depends>
             <module>vuejs</module>
         </depends>
-        <!-- Not yet ready for this stage -->
-        <!--
         <depends>
-          <module>veeValidate</module>
+            <module>juzu-ajax</module>
         </depends>
-        -->
+        <depends>
+            <module>jquery</module>
+            <as>jQuery</as>
+        </depends>
     </module>
+
     <module>
         <name>vuejs</name>
         <as>vuejs</as>
@@ -60,6 +62,14 @@
         <as>veeValidate</as>
         <script>
             <path>/javascript/vee-validate.min.js</path>
+        </script>
+    </module>
+    <!-- UI validation fwk used as a component within Vuejs-->
+    <module>
+        <name>vueTables</name>
+        <as>VueTables</as>
+        <script>
+            <path>/javascript/vue-tables-2.min.js</path>
         </script>
     </module>
 

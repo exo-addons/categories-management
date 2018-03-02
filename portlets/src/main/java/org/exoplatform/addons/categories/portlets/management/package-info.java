@@ -40,7 +40,9 @@
 )
 @Bindings(
         {
-                @Binding(value = org.exoplatform.services.organization.OrganizationService.class)
+                @Binding(value = org.exoplatform.services.organization.OrganizationService.class),
+                @Binding(value = org.exoplatform.categories.service.CategoryService.class)
+
         }
 )
 

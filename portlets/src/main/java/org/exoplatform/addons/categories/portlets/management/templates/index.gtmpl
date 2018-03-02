@@ -1,15 +1,84 @@
 <div class="container">
   <div id="categories-management">
-    <div class="">
-      <h2>
-        <span>Categories Managements</span>
-      </h2>
+
+    <div class="alert alert-success" id="" v-if="showSuccessMessage === true">
+      <i class="uiIconSuccess" v-html="successMessage"></i>
+    </div>
+    <div class="alert alert-error" id="" style="display: inline-block;" v-if="showErrorMessage === true">
+      <i class="uiIconError" v-html="errorMessage"></i>
     </div>
     <div class="col-md-12">
-      <ol>
-        <category v-for="category in categories" v-bind:item="category" v-bind:key="category.id">
-        </category>
-      </ol>
+
+      <table class="uiGrid table table-hover table-striped">
+
+        <!--Table titles -->
+        <tr>
+
+          <td class="center">#</td>
+          <td class="center">Title</td>
+          <td class="center">Description</td>
+          <td class="center">Icon</td>
+          <td class="center">Action</td>
+
+          </td>
+
+        </tr>
+        <!-- Table data-->
+        <tr v-for="(category,key) in categories" v-bind:item="category" v-bind:key="category.id" v-if="categories.length > 0">
+          <td class="center">{{category.id}}</td>
+          <td class="center">{{category.title}}</td>
+          <td class="center">{{category.description}}</td>
+          <td class="center">{{category.icon}}</td>
+          <td class="center actionContainer">
+            <a data-placement="bottom" rel="tooltip" class="actionIcon" data-original-title="Edit">
+              <i class="uiIconEdit uiIconLightGray"></i>
+            </a>
+
+            <a data-placement="bottom" rel="tooltip" class="actionIcon" data-original-title="Delete">
+              <i class="uiIconDeleteUser uiIconLightGray" @click="deleteCategory(key,category)"></i>
+            </a>
+          </td>
+        </tr>
+        <tr v-if="categories.length  == 0">
+          <td class="empty center" colspan="5"> Empty data </td>
+        </tr>
+
+      </table>
     </div>
+    <!-- Create/Update form-->
+    <div class="col-md-12">
+    </div>
+    <div class="col-md-12">
+
+      <template>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2>
+              <span>Add new category</span>
+            </h2>
+          </div>
+          <div class="panel-body">
+            <form novalidate>
+              <div class="form-group">
+                <label>Category title</label>
+                <input class="input-xxlarge" type="text" placeholder="" v-bind="title">
+              </div>
+              <div class="form-group">
+                <label>Category Description</label>
+                <textarea rows="5" v-bind="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Category Icon</label>
+                <input class="input-xxlarge" type="text" placeholder="" v-bind="icon">
+              </div>
+              <div>
+                <button class="btn btn-primary" @click="addCategory">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </template>
+    </div>
+
   </div>
 </div>

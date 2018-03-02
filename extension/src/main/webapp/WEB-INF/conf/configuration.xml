@@ -27,6 +27,8 @@
 
     <!-- Categories management core configurations -->
     <import>war:/conf/categories/portal-configuration.xml</import>
+    <import>war:/conf/categories/resource-bundles-configuration.xml</import>
+    <import>war:/conf/categories/menu-configuration.xml</import>
     <import>war:/conf/categories/storage-configuration.xml</import>
 
 </configuration>
