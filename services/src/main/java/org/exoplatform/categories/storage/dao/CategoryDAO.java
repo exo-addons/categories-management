@@ -66,6 +66,9 @@ public class CategoryDAO extends GenericDAOJPAImpl<CategoryEntity, Long> {
                 .executeUpdate();
 
     }
+    public CategoryEntity findCategoryById(Long categoryId) throws PersistenceException {
+        return getEntityManager().find(CategoryEntity.class,categoryId);
+    }
 
     public void clear() {
         getEntityManager().clear();

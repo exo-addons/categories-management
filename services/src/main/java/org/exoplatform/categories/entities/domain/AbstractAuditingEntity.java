@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Date;
 
 /**
  * Base abstract class for entities which will hold definitions for created, last modified by and created,
@@ -25,7 +26,9 @@ public abstract class AbstractAuditingEntity implements Serializable {
 
     @Column(name = "created_date", nullable = false)
     @JsonIgnore
-    private Instant createdDate = Instant.now();
+    //---Can't match java8 API with JPA/hibernate : we have to upgrade to jpa-2.2
+    //private Instant createdDate = Instant.now();
+    private Date createdDate = new Date();
 
     @Column(name = "last_modified_by", length = 50)
     @JsonIgnore
@@ -33,7 +36,9 @@ public abstract class AbstractAuditingEntity implements Serializable {
 
     @Column(name = "last_modified_date")
     @JsonIgnore
-    private Instant lastModifiedDate = Instant.now();
+    //---Can't match java8 API with JPA/hibernate : we have to upgrade to jpa-2.2
+    //private Instant lastModifiedDate = Instant.now();
+    private Date lastModifiedDate = new Date ();
 
     public String getCreatedBy() {
         return createdBy;
@@ -41,14 +46,6 @@ public abstract class AbstractAuditingEntity implements Serializable {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
     }
 
     public String getLastModifiedBy() {
@@ -59,11 +56,19 @@ public abstract class AbstractAuditingEntity implements Serializable {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public Instant getLastModifiedDate() {
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Instant lastModifiedDate) {
+    public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 }

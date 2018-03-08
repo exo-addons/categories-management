@@ -42,10 +42,13 @@ public class CategoryService {
         return categoryStorage.findCategoryByTitle(categoryTitle);
     }
 
-    public List<CategoryEntity> findcategoriesByContext (String categoryContext) {
+    public List<CategoryEntity> findCategoriesByContext (String categoryContext) {
 
         return categoryStorage.findCategoriesByContext(categoryContext);
 
+    }
+    public CategoryEntity findCategoriesById (Long categoryId) {
+        return categoryStorage.findCategoryById(categoryId);
     }
 
     public void getAllBadges () {

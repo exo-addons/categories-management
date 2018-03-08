@@ -1,9 +1,4 @@
 (function ($) {
-  Vue.component('category', {
-    props: ['item'],
-    template: '<li>{{ item.title }}</li>'
-  });
-
   var cat = new Vue({
     el: '#categories-management',
     data: {
@@ -14,7 +9,9 @@
       successMessage: "",
       errorMessage: "",
       showSuccessMessage: false,
-      showErrorMessage: false
+      showErrorMessage: false,
+      isNew: true,
+      i18n: []
     },
     methods: {
       deleteCategory: function (index, category) {
@@ -25,7 +22,9 @@
         $.ajax({
           type: 'GET',
           url: urlCall,
-          data: category,
+          data: {
+            "title": category.title
+          }
 
         }).done(function () {
           self.successMessage = "Category has been removed successfully.";
@@ -35,6 +34,8 @@
           self.showErrorMessage = true
         }).always(function () {
           self.categories.splice(index, 1);
+          self.showSuccessMessage = false;
+          self.showErrorMessage = false;
         });
 
       },
@@ -58,11 +59,47 @@
           self.errorMessage = "Error when adding category. Please try again!";
           self.showErrorMessage = true;
         }).always(function (data) {
-          this.categories.push(data);
-
+          self.showSuccessMessage = false;
+          self.showErrorMessage = false;
         });
 
+      },
+      updateCategory: function () {
+        var self = this;
+        var $githubDiv = $("#categories-management");
+        var urlCall = $githubDiv.jzURL("CategoriesManagementController.update");
+        $.ajax({
+          type: 'GET',
+          url: urlCall,
+          data: {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "icon": self.icon
+          },
+
+        }).done(function (data) {
+          self.successMessage = "Category has been updated successfully.";
+          self.showSuccessMessage = true;
+        }).fail(function () {
+          self.errorMessage = "Error when adding category. Please try again!";
+          self.showErrorMessage = true;
+        }).always(function (data) {
+          self.showSuccessMessage = false;
+          self.showErrorMessage = false;
+        });
+
+      },
+      activeEditForm: function (category) {
+        var self = this;
+        self.title = category.title;
+        self.description = category.description;
+        self.icon = category.icon;
+        self.id = category.id;
+        self.isNew = false;
+
       }
+
     },
     created() {
       var self = this;
@@ -77,7 +114,6 @@
         success: function (data) {
           // Reload project tree;
           self.categories = data
-          console.log(data);
         },
         error: function (xhr) {
           if (xhr.status >= 400) {
@@ -87,6 +123,23 @@
           }
         }
       });
+    },
+    mounted() {
+      var self = this;
+      var $githubDiv = $("#categories-management");
+      var urlCall = $githubDiv.jzURL("CategoriesManagementController.getBundle") + "&locale=" + eXo.env.portal.language ;
+      $.ajax({
+        type: 'GET',
+        url: urlCall,
+
+      }).done(function (data) {
+        self.i18n = data;
+      }).fail(function () {
+        console.warn('cannot load resource bundle')
+      }).always(function (data) {
+
+      });
+
     }
 
   });
